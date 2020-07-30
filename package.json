@@ -1,0 +1,20 @@
+{
+  "name": "pspdfkit-server-invoice",
+  "version": "1.0.0",
+  "description": "Creates invoices using PSPDFKit Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pspdfkit",
+    "pdf",
+    "invoice"
+  ],
+  "author": "Arek Gil <arek@pspdfkit.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "form-data": "^3.0.0"
+  }
+}

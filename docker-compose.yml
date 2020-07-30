@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:11.6
+    environment:
+      POSTGRES_USER: pspdfkit
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: pspdfkit
+      POSTGRES_INITDB_ARGS: --data-checksums
+    command: -c fsync=off -c max_connections=1500
+  pspdfkit:
+    image: "pspdfkit/pspdfkit:2020.4.1"
+    environment:
+      PGUSER: pspdfkit
+      PGPASSWORD: password
+      PGDATABASE: pspdfkit
+      PGHOST: db
+      PGPORT: 5432
+
+      ACTIVATION_KEY: ${ACTIVATION_KEY?}
+      API_AUTH_TOKEN: ${SERVER_API_AUTH_TOKEN?}
+
+      SECRET_KEY_BASE: secret-key-base
+      JWT_PUBLIC_KEY: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqDXzz1PsfJ3RxStBRT/G
+        zmULnV+q5phevNqA7qOgRudTGvYxhx+LZiEYJztFUyvD8cKeVQfqpu87DkUGzR1Y
+        GFf77EVvt9aYZub/3EgjVQFJM4P5XaGO2F3qO1R3OUaZ8GlqD4RS8nxiMWkmU3hr
+        /UYfLPAjV7LGh+fX8VFAPsfbgV4WF3KPE1acXKcYQLevn6L2c5C6EYc4tKA094wt
+        kjY5gpCSSJGt+5VpDwITdqyLBnvLX8ZuJBzsU8yTipMVgMPp0B3QU9vQIdzJYYKz
+        aOnzLMHETjMQCsmnZVVL056nDRL2sghpojXBRShlbHjLbegJk447evLa8p2/AV2U
+        RwIDAQAB
+        -----END PUBLIC KEY-----
+      JWT_ALGORITHM: RS256
+
+      DASHBOARD_USERNAME: dashboard
+      DASHBOARD_PASSWORD: secret
+    ports:
+      - ${SERVER_PORT?}:5000
+    depends_on:
+      - db

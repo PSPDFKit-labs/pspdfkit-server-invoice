@@ -1,0 +1,21 @@
+{
+  "number": "12345",
+  "customer": "John Doe\n2908  Hope Street\nPortland, OR, 97230",
+  "items": [
+    {
+      "name": "Cartridge",
+      "unitCost": 15.5,
+      "quantity": 2
+    },
+    {
+      "name": "USB/USB-C Adapter",
+      "unitCost": 2.3,
+      "quantity": 1
+    },
+    {
+      "name": "Ethernet RJ45 Cable 10m",
+      "unitCost": 10,
+      "quantity": 3
+    }
+  ]
+}
